@@ -1,0 +1,30 @@
+<h3 class="text-white">{{message}}</h3>
+<div class="form-group">
+    <form (ngSubmit)="register()" [formGroup]="registerForm">
+        <label for="email">Email: </label>
+        <input name="email" id="email" type="text" formControlName="email" required placeholder="email" />
+
+        @let email = registerForm.get('email');
+        @if(email?.dirty && email?.invalid || message){
+        <div class="error">
+            Email is required.
+        </div>
+        }
+        <label for="password">Password: </label>
+        <input name="password" id="password" type="password" formControlName="password" required
+            placeholder="password" />
+
+        @let password = registerForm.get('password');
+        @if(password?.dirty && password?.invalid || message){
+        <div class="error">
+            Password is required.
+        </div>
+        }
+
+        <div class="row">
+            <button type="submit" [disabled]="registerForm.invalid">Register</button>
+        </div>
+
+
+    </form>
+</div>

@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply no-underline bg-gray-200 border cursor-pointer rounded px-3 py-2;
+    @apply text-gray-800 font-bold text-base font-sans leading-4;
+    @apply hover:bg-gray-300;   
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.btn-gray {
+    @apply bg-white text-black border-2;
+    border-color: #e7e7e7;
+}
+
+.row {
+  @apply flex;
+}
+.column {
+  @apply flex flex-col p-4
+}
+
+form {
+  @apply flex flex-col bg-beige p-4;
+
+ .input-group {
+   @apply flex;
+ }
+ .input-group > label {
+   @apply mr-4 px-2 py-0;
+ }
+
+ label {
+   @apply min-w-[35%] font-bold text-[1.25rem];
+ }
+ input,
+ select {
+   @apply min-w-[55%] p-2 mb-4;
+ }
+
+ button {
+   @apply p-4 bg-grey text-white border-none hover:bg-gray-300 hover:cursor-pointer rounded;
+ }
+
+ fieldset {
+   @apply border-none;
+ }
+}
+.error {
+ @apply text-red-500;
+
+ div {
+   @apply leading-3 pb-4 ml-6;
+ }
+}

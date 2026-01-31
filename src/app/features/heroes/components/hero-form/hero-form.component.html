@@ -1,0 +1,90 @@
+<div>
+    <h4 class="error"> {{message}}</h4>
+
+    <form [formGroup]="heroForm()" (ngSubmit)="addHero()">
+
+        <div class="row">
+            <div class="column">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input formControlName="name" type="text" id="name" name="name" required />
+                </div>
+                @if(this.heroForm().get('name')?.dirty && this.heroForm().get('name')?.invalid){
+                <div class="error">
+                    @if(this.heroForm().get('name')?.getError('required')){
+                    <div>* Hero name is required. </div>
+                    }
+                    @if(this.heroForm().get('name')?.getError('heroNameValid')){
+                    <div>* This hero name must be a valid name. </div>
+                    }
+                </div>
+                }
+
+
+                <div formGroupName="powerstats">
+
+                    @for(powerstat of powerstats; track powerstat){
+                    <div class="input-group">
+                        <label [for]="powerstat">{{powerstat | titlecase}}</label>
+                        <input [formControlName]="powerstat" type="number" [id]="powerstat" [name]="powerstat"
+                            required />
+                    </div>
+                    @if(this.heroForm().get('powerstats')?.get(powerstat)?.dirty &&
+                    this.heroForm().get('powerstats')?.get(powerstat)?.invalid){
+                    <div class="error">
+                        @if(this.heroForm().get('powerstats')?.get(powerstat)?.getError('required')){
+                        <div>* {{powerstat | titlecase}} is required. </div>
+                        }
+                        @if(this.heroForm().get('powerstats')?.get(powerstat)?.getError('min') ||
+                        this.heroForm().get('powerstats')?.get(powerstat)?.getError('max')){
+                        <div>* {{powerstat | titlecase}} must be between 0 and 100. </div>
+                        }
+                    </div>
+                    }
+                    }
+
+
+
+                    <!--                 
+                    <div class="input-group">
+                        <label for="durability">Durability</label>
+                        <input formControlName="durability" type="number" id="durability" name="durability" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="intelligence">Intelligence</label>
+                        <input formControlName="intelligence" type="number" id="intelligence" name="intelligence" required />
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="power">Power</label>
+                        <input formControlName="power" type="number" id="power" name="power" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="speed">Speed</label>
+                        <input formControlName="speed" type="number" id="speed" name="speed" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="strength">Strength</label>
+                        <input formControlName="strength" type="number" id="strength" name="strength" required />
+                    </div> -->
+                </div>
+                <div class="input-group">
+                    <label for="image">Image URL</label>
+                    <input formControlName="image" type="text" id="image" name="image" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="alignment">Alignment</label>
+                    <input formControlName="alignment" type="text" id="alignment" name="alignment" required />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button [disabled]="heroForm().invalid">{{textButton()}}</button>
+        </div>
+    </form>
+</div>

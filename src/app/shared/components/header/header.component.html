@@ -1,0 +1,35 @@
+<nav class="flex flex-wrap items-center justify-between mx-auto p-4 max-w-screen-2xl">
+    <ul class="flex flex-row justify-between w-full">
+        <div class="flex flex-row space-x-8 font-medium">
+            <li>
+                <a [routerLink]="navigation.home" class="text-2xl font-bold">Heroes App</a>
+            </li>
+        </div>
+        <div class="flex flex-row space-x-8 font-medium">
+
+            @if(isLogin()){
+            <li>
+                <a [routerLink]="navigation.home" routerLinkActive="text-blue-700">Home</a>
+            </li>
+            <li>
+                <a [routerLink]="navigation.heroNew" routerLinkActive="text-blue-700">New
+                    Hero</a>
+            </li>
+
+            <li>
+                <a (click)="logout()" class="cursor-pointer text-red-600">Logout</a>
+            </li>
+
+            }@else {
+            <li>
+                <a [routerLink]="navigation.login" routerLinkActive="text-blue-700">Login</a>
+            </li>
+            <li>
+                <a [routerLink]="navigation.register" routerLinkActive="text-blue-700">Register</a>
+            </li>
+            }
+
+        </div>
+
+    </ul>
+</nav>

@@ -1,0 +1,37 @@
+<div class="in-w-64 border rounded-md p-4 shadow-md text-white" [class.text-white]="isHeroOrVillain()"
+    [class.bg-rebeccapurple]="isHeroOrVillain()">
+
+    <div class="image mb-4 flex justify-center">
+        <img [src]="hero().image" class="w-48 h-72" alt="Hero Image">
+    </div>
+
+    <div class="details space-y-2">
+        <div class="hero-name flex items-center justify-center gap-2">
+            <h2 class="text-lg font-bold text-center">{{hero().name}}</h2>
+            @if(isHeroOrVillain()){
+            <span class="villain-tag text-red-500">🦹‍♂️</span>
+            }@else {
+            <span class="hero-tag text-green-500">🦸‍♂️</span>
+            }
+        </div>
+
+        @for(powerstat of hero().powerstats | keyvalue; track powerstat.key){
+        <div class="hero-powerstats flex items-center justify-between">
+            <span>{{powerstat.key | titlecase}}: {{powerstat.value}}</span>
+            <div class="hero-powerstats-buttons flex gap-2">
+                <button class="btn btn-gray text-sm" [disabled]="powerstat.value === 100"
+                    (click)="incrementPowerStat(powerstat.key)">+</button>
+                <button class="btn btn-gray text-sm" [disabled]="powerstat.value === 0"
+                    (click)="decrementPowerStat(powerstat.key)">-</button>
+            </div>
+        </div>
+        }
+        <hr class="m-4 border-amber-600" />
+        <div class="flex justify-center gap-4 mt-2">
+            <span class="btn btn-gray text-xl" [routerLink]="navigation().update"> Update </span>
+            <span class="btn btn-blue text-xl" [routerLink]="navigation().details"> Details </span>
+            <span class="btn btn-red text-xl" (click)="remove(hero())"> Remove </span>
+        </div>
+
+    </div>
+</div>
